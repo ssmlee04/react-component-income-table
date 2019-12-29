@@ -166,7 +166,17 @@ function (_React$Component) {
       var data = calculateMargins(_lodash["default"].get(profile, 'income_and_revenue.data', []));
       var unit = _lodash["default"].get(data, '0.unit') || 'million';
       var arr = data.slice(-4);
-      return _react["default"].createElement("div", null, _react["default"].createElement("table", {
+      return _react["default"].createElement("div", {
+        style: {
+          width: '100%',
+          padding: 5
+        }
+      }, _react["default"].createElement("div", {
+        style: {
+          color: 'darkred',
+          fontWeight: 'bold'
+        }
+      }, profile.ticker, " - ", profile.name), _react["default"].createElement("table", {
         className: "table table-sm"
       }, _react["default"].createElement("thead", {
         className: "bold"
