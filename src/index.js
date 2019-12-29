@@ -30,7 +30,7 @@ export class Analyst extends React.Component {
     const { copied } = this.state;
     if (!profile) {
       return (
-        <div style={{ fontSize: 14 }}>Not available at this time... </div>
+        <div style={{ fontSize: 12 }}>Not available at this time... </div>
       );
     }
     if (profile.income_table && profile.income_table.url) {
@@ -111,7 +111,7 @@ export class Analyst extends React.Component {
     const arr = data.slice(-4);
 
     return (
-      <div style={{ width: '100%', padding: 5 }}>
+      <div style={{ width: '100%', padding: 5, fontSize: 12 }}>
         <div style={{ color: 'darkred', fontWeight: 'bold' }}>{profile.ticker} - {profile.name}</div>
         <table className='table table-sm'>
           <thead className='bold'>

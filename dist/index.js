@@ -74,7 +74,7 @@ function (_React$Component) {
       if (!profile) {
         return _react["default"].createElement("div", {
           style: {
-            fontSize: 14
+            fontSize: 12
           }
         }, "Not available at this time... ");
       }
@@ -169,7 +169,8 @@ function (_React$Component) {
       return _react["default"].createElement("div", {
         style: {
           width: '100%',
-          padding: 5
+          padding: 5,
+          fontSize: 12
         }
       }, _react["default"].createElement("div", {
         style: {
