@@ -109,7 +109,7 @@ function (_React$Component) {
         var u = 'm';
         if (!data || !data.length) return data;
 
-        if (data[0].rev > 1000000000) {
+        if (data[0].rev > 10000000000) {
           divider = 1000000000;
           unit = 'billion';
           u = 'b';
