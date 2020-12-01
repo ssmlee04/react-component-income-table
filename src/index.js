@@ -9,7 +9,7 @@ const greenOrRed = (str, high, low) => {
   if (v < low) return 'red';
 };
 
-export class Analyst extends React.Component {
+export class IncomeTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,20 +26,20 @@ export class Analyst extends React.Component {
   }
 
   render() {
-    const { profile } = this.props;
+    const { profile, prop = 'income_and_revenue', imgProp = 'income_table' } = this.props;
     const { copied } = this.state;
     if (!profile) {
       return (
         <div style={{ fontSize: 12 }}>Not available at this time... </div>
       );
     }
-    if (profile.income_table && profile.income_table.url) {
+    if (profile[imgProp] && profile[imgProp].url) {
       const btnClass = copied ? 'react-components-show-url btn btn-sm btn-danger disabled font-10' : 'react-components-show-url btn btn-sm btn-warning font-10';
       const btnText = copied ? 'Copied' : 'Copy Img';
       return (
         <div className='react-components-show-button'>
-          <img alt={`${profile.ticker} - ${profile.name} income statement table condensed`} src={profile.income_table.url} style={{ width: '100%' }} />
-          <CopyToClipboard text={profile.income_table.url || ''}
+          <img alt={`${profile.ticker} - ${profile.name} income statement table condensed`} src={profile[imgProp].url} style={{ width: '100%' }} />
+          <CopyToClipboard text={profile[imgProp].url || ''}
             onCopy={() => this.setState({ copied: true })}
           >
             <button className={btnClass} value={btnText}>{btnText}</button>
@@ -111,7 +111,7 @@ export class Analyst extends React.Component {
       });
     };
 
-    const data = calculateMargins(_.get(profile, 'income_and_revenue.data', []));
+    const data = calculateMargins(_.get(profile, `${prop}.data`, []));
     const unit = _.get(data, '0.unit') || 'million';
     const arr = data.slice(-4);
 
@@ -212,4 +212,4 @@ export class Analyst extends React.Component {
   }
 }
 
-export default Analyst;
+export default IncomeTable;
