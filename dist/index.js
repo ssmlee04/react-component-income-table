@@ -163,6 +163,10 @@ function (_React$Component) {
           d.otherIncomeExpenseSmall = d.otherIncomeExpense / divider;
           d.rndSmall = d.rnd / divider;
           d.sgnaSmall = d.sgna / divider;
+          d.ieSmall = d.ie / divider;
+          d.toeSmall = d.toe / divider;
+          d.gaSmall = d.ga / divider;
+          d.smSmall = d.sm / divider;
           d.revSmall = d.rev / divider;
           d.revenueGrowthYoy = data[i - 4] ? ((d.rev / data[i - 4].rev - 1) * 100).toFixed(2) : '';
           d.quarterStr = yy + qtr;
@@ -196,7 +200,10 @@ function (_React$Component) {
           color: 'green'
         }
       }, "Income Statement")), _react["default"].createElement("table", {
-        className: "table table-sm"
+        className: "table table-sm",
+        style: {
+          marginBottom: 0
+        }
       }, _react["default"].createElement("thead", {
         className: "bold"
       }, _react["default"].createElement("th", {
@@ -269,7 +276,27 @@ function (_React$Component) {
         className: "bg-lightgray-ultra-3"
       }, arr[2] && arr[2].rndSmall && parseFloat(arr[2].rndSmall).toFixed(2)), _react["default"].createElement("td", {
         className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].rndSmall && parseFloat(arr[3].rndSmall).toFixed(2))), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, arr[3] && arr[3].rndSmall && parseFloat(arr[3].rndSmall).toFixed(2))), _lodash["default"].get(arr, '3.sm') !== undefined && _lodash["default"].get(arr, '3.ga') !== undefined ? _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+        className: "bold"
+      }, "S & M"), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-5"
+      }, arr[0] && arr[0].smSmall >= 0 && arr[0].smSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-4"
+      }, arr[1] && arr[1].smSmall >= 0 && arr[1].smSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-3"
+      }, arr[2] && arr[2].smSmall >= 0 && arr[2].smSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-2"
+      }, arr[3] && arr[3].smSmall >= 0 && arr[3].smSmall.toFixed(2))), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+        className: "bold"
+      }, "G & A"), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-5"
+      }, arr[0] && arr[0].gaSmall >= 0 && arr[0].gaSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-4"
+      }, arr[1] && arr[1].gaSmall >= 0 && arr[1].gaSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-3"
+      }, arr[2] && arr[2].gaSmall >= 0 && arr[2].gaSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-2"
+      }, arr[3] && arr[3].gaSmall >= 0 && arr[3].gaSmall.toFixed(2)))) : _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
       }, "SG & A"), _react["default"].createElement("td", {
         className: "bg-lightgray-ultra-5"
@@ -279,7 +306,27 @@ function (_React$Component) {
         className: "bg-lightgray-ultra-3"
       }, arr[2] && arr[2].sgnaSmall && parseFloat(arr[2].sgnaSmall).toFixed(2)), _react["default"].createElement("td", {
         className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].sgnaSmall && parseFloat(arr[3].sgnaSmall).toFixed(2))), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, arr[3] && arr[3].sgnaSmall && parseFloat(arr[3].sgnaSmall).toFixed(2))), _lodash["default"].get(arr, '3.ie') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+        className: ""
+      }, "Interest Expense"), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-5"
+      }, arr[0] && arr[0].ieSmall >= 0 && arr[0].ieSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-4"
+      }, arr[1] && arr[1].ieSmall >= 0 && arr[1].ieSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-3"
+      }, arr[2] && arr[2].ieSmall >= 0 && arr[2].ieSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-2"
+      }, arr[3] && arr[3].ieSmall >= 0 && arr[3].ieSmall.toFixed(2))) : null, _lodash["default"].get(arr, '3.toe') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+        className: ""
+      }, "Operating Expense"), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-5"
+      }, arr[0] && arr[0].toeSmall >= 0 && arr[0].toeSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-4"
+      }, arr[1] && arr[1].toeSmall >= 0 && arr[1].toeSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-3"
+      }, arr[2] && arr[2].toeSmall >= 0 && arr[2].toeSmall.toFixed(2)), _react["default"].createElement("td", {
+        className: "bg-lightgray-ultra-2"
+      }, arr[3] && arr[3].toeSmall >= 0 && arr[3].toeSmall.toFixed(2))) : null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: ""
       }, "Operating Income"), _react["default"].createElement("td", {
         className: "bg-lightgray-ultra-5"

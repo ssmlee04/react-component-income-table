@@ -100,6 +100,10 @@ export class IncomeTable extends React.Component {
         d.otherIncomeExpenseSmall = d.otherIncomeExpense / divider;
         d.rndSmall = d.rnd / divider;
         d.sgnaSmall = d.sgna / divider;
+        d.ieSmall = d.ie / divider;
+        d.toeSmall = d.toe / divider;
+        d.gaSmall = d.ga / divider;
+        d.smSmall = d.sm / divider;
         d.revSmall = d.rev / divider;
         d.revenueGrowthYoy = data[i - 4] ? ((d.rev / data[i - 4].rev - 1) * 100).toFixed(2) : '';
         d.quarterStr = yy + qtr;
@@ -118,7 +122,7 @@ export class IncomeTable extends React.Component {
     return (
       <div style={{ width: '100%', padding: 5, fontSize: 8 }}>
         <div style={{ color: 'darkred', fontWeight: 'bold', fontSize: 8, marginBottom: 3 }}>{profile.ticker} - {profile.name}<span style={{ marginLeft: 5, color: 'green' }}>Income Statement</span></div>
-        <table className='table table-sm'>
+        <table className='table table-sm' style={{ marginBottom: 0 }}>
           <thead className='bold'>
             <th className='left lighter'>Unit: ({unit})</th>
             <th className='bg-lightgray-ultra-5'>{arr[0] && arr[0].quarterStr}</th>
@@ -169,13 +173,40 @@ export class IncomeTable extends React.Component {
               <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].rndSmall && parseFloat(arr[2].rndSmall).toFixed(2)}</td>
               <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].rndSmall && parseFloat(arr[3].rndSmall).toFixed(2)}</td>
             </tr>
+            {_.get(arr, '3.sm') !== undefined && _.get(arr, '3.ga') !== undefined ? <React.Fragment><tr>
+              <td className='bold'>S & M</td>
+              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].smSmall >= 0 && (arr[0].smSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].smSmall >= 0 && (arr[1].smSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].smSmall >= 0 && (arr[2].smSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].smSmall >= 0 && (arr[3].smSmall).toFixed(2)}</td>
+            </tr><tr>
+              <td className='bold'>G & A</td>
+              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].gaSmall >= 0 && (arr[0].gaSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].gaSmall >= 0 && (arr[1].gaSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].gaSmall >= 0 && (arr[2].gaSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].gaSmall >= 0 && (arr[3].gaSmall).toFixed(2)}</td>
+            </tr></React.Fragment> :
             <tr>
               <td className='bold'>SG & A</td>
               <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].sgnaSmall && parseFloat(arr[0].sgnaSmall).toFixed(2)}</td>
               <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].sgnaSmall && parseFloat(arr[1].sgnaSmall).toFixed(2)}</td>
               <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].sgnaSmall && parseFloat(arr[2].sgnaSmall).toFixed(2)}</td>
               <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].sgnaSmall && parseFloat(arr[3].sgnaSmall).toFixed(2)}</td>
-            </tr>
+            </tr>}
+            {_.get(arr, '3.ie') !== undefined ? <tr>
+              <td className=''>Interest Expense</td>
+              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].ieSmall >= 0 && (arr[0].ieSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].ieSmall >= 0 && (arr[1].ieSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].ieSmall >= 0 && (arr[2].ieSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].ieSmall >= 0 && (arr[3].ieSmall).toFixed(2)}</td>
+            </tr> : null}
+            {_.get(arr, '3.toe') !== undefined ? <tr>
+              <td className=''>Operating Expense</td>
+              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].toeSmall >= 0 && (arr[0].toeSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].toeSmall >= 0 && (arr[1].toeSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].toeSmall >= 0 && (arr[2].toeSmall).toFixed(2)}</td>
+              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].toeSmall >= 0 && (arr[3].toeSmall).toFixed(2)}</td>
+            </tr> : null}
             <tr>
               <td className=''>Operating Income</td>
               <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].oiSmall && parseFloat(arr[0].oiSmall).toFixed(2)}</td>
