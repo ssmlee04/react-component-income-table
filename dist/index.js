@@ -276,7 +276,7 @@ function (_React$Component) {
         className: "bg-lightgray-ultra-3"
       }, arr[2] && arr[2].rndSmall && parseFloat(arr[2].rndSmall).toFixed(2)), _react["default"].createElement("td", {
         className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].rndSmall && parseFloat(arr[3].rndSmall).toFixed(2))), _lodash["default"].get(arr, '3.sm') !== undefined && _lodash["default"].get(arr, '3.ga') !== undefined ? _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, arr[3] && arr[3].rndSmall && parseFloat(arr[3].rndSmall).toFixed(2))), _lodash["default"].get(arr, '0.sm') !== undefined && _lodash["default"].get(arr, '0.ga') !== undefined ? _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
       }, "S & M"), _react["default"].createElement("td", {
         className: "bg-lightgray-ultra-5"
@@ -306,7 +306,7 @@ function (_React$Component) {
         className: "bg-lightgray-ultra-3"
       }, arr[2] && arr[2].sgnaSmall && parseFloat(arr[2].sgnaSmall).toFixed(2)), _react["default"].createElement("td", {
         className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].sgnaSmall && parseFloat(arr[3].sgnaSmall).toFixed(2))), _lodash["default"].get(arr, '3.ie') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, arr[3] && arr[3].sgnaSmall && parseFloat(arr[3].sgnaSmall).toFixed(2))), _lodash["default"].get(arr, '0.ie') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: ""
       }, "Interest Expense"), _react["default"].createElement("td", {
         className: "bg-lightgray-ultra-5"
@@ -316,7 +316,7 @@ function (_React$Component) {
         className: "bg-lightgray-ultra-3"
       }, arr[2] && arr[2].ieSmall >= 0 && arr[2].ieSmall.toFixed(2)), _react["default"].createElement("td", {
         className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].ieSmall >= 0 && arr[3].ieSmall.toFixed(2))) : null, _lodash["default"].get(arr, '3.toe') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, arr[3] && arr[3].ieSmall >= 0 && arr[3].ieSmall.toFixed(2))) : null, _lodash["default"].get(arr, '0.toe') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: ""
       }, "Operating Expense"), _react["default"].createElement("td", {
         className: "bg-lightgray-ultra-5"

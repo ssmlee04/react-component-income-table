@@ -173,7 +173,7 @@ export class IncomeTable extends React.Component {
               <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].rndSmall && parseFloat(arr[2].rndSmall).toFixed(2)}</td>
               <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].rndSmall && parseFloat(arr[3].rndSmall).toFixed(2)}</td>
             </tr>
-            {_.get(arr, '3.sm') !== undefined && _.get(arr, '3.ga') !== undefined ? <React.Fragment><tr>
+            {_.get(arr, '0.sm') !== undefined && _.get(arr, '0.ga') !== undefined ? <React.Fragment><tr>
               <td className='bold'>S & M</td>
               <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].smSmall >= 0 && (arr[0].smSmall).toFixed(2)}</td>
               <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].smSmall >= 0 && (arr[1].smSmall).toFixed(2)}</td>
@@ -193,14 +193,14 @@ export class IncomeTable extends React.Component {
               <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].sgnaSmall && parseFloat(arr[2].sgnaSmall).toFixed(2)}</td>
               <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].sgnaSmall && parseFloat(arr[3].sgnaSmall).toFixed(2)}</td>
             </tr>}
-            {_.get(arr, '3.ie') !== undefined ? <tr>
+            {_.get(arr, '0.ie') !== undefined ? <tr>
               <td className=''>Interest Expense</td>
               <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].ieSmall >= 0 && (arr[0].ieSmall).toFixed(2)}</td>
               <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].ieSmall >= 0 && (arr[1].ieSmall).toFixed(2)}</td>
               <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].ieSmall >= 0 && (arr[2].ieSmall).toFixed(2)}</td>
               <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].ieSmall >= 0 && (arr[3].ieSmall).toFixed(2)}</td>
             </tr> : null}
-            {_.get(arr, '3.toe') !== undefined ? <tr>
+            {_.get(arr, '0.toe') !== undefined ? <tr>
               <td className=''>Operating Expense</td>
               <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].toeSmall >= 0 && (arr[0].toeSmall).toFixed(2)}</td>
               <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].toeSmall >= 0 && (arr[1].toeSmall).toFixed(2)}</td>
