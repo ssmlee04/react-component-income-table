@@ -120,8 +120,8 @@ export class IncomeTable extends React.Component {
     const arr = data.slice(-4);
 
     return (
-      <div style={{ width: '100%', padding: 5, fontSize: 8 }}>
-        <div style={{ color: 'darkred', fontWeight: 'bold', fontSize: 8, marginBottom: 3 }}>{profile.ticker} - {profile.name}<span style={{ marginLeft: 5, color: 'green' }}>Income Statement</span></div>
+      <div style={{ width: '100%', padding: 5, fontSize: 7 }}>
+        <div style={{ color: 'darkred', fontWeight: 'bold', fontSize: 7, marginBottom: 3 }}>{profile.ticker} - {profile.name}<span style={{ marginLeft: 5, color: 'green' }}>Income Statement</span></div>
         <table className='table table-sm' style={{ marginBottom: 0 }}>
           <thead className='bold'>
             <th className='left lighter'>Unit: ({unit})</th>

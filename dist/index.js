@@ -185,13 +185,13 @@ function (_React$Component) {
         style: {
           width: '100%',
           padding: 5,
-          fontSize: 8
+          fontSize: 7
         }
       }, _react["default"].createElement("div", {
         style: {
           color: 'darkred',
           fontWeight: 'bold',
-          fontSize: 8,
+          fontSize: 7,
           marginBottom: 3
         }
       }, profile.ticker, " - ", profile.name, _react["default"].createElement("span", {
