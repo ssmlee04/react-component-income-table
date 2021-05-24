@@ -125,67 +125,67 @@ export class IncomeTable extends React.Component {
         <table className='table table-sm' style={{ marginBottom: 0, fontSize: 10 }}>
           <thead className='bold'>
             <th className='left lighter'>Unit: ({unit})</th>
-            {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d}`}>{arr[d] && arr[d].quarterStr}</th>)}
+            {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].quarterStr}</th>)}
           </thead>
           <tbody>
             <tr>
               <td className='bold'>Qtr Revenue</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].revSmall && parseFloat(arr[d].revSmall).toFixed(2)}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].revSmall && parseFloat(arr[d].revSmall).toFixed(2)}</td>)}
             </tr>
             <tr>
               <td className='bold crimson'>Rev Growth yoy</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} ${greenOrRed(arr[d] && arr[d].revenueGrowthYoy, 40, -20)}`}>{arr[d] && arr[d].revenueGrowthYoy + ' %'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov ${greenOrRed(arr[d] && arr[d].revenueGrowthYoy, 40, -20)}`}>{arr[d] && arr[d].revenueGrowthYoy + ' %'}</td>)}
             </tr>
             <tr>
               <td className='bold'>Cost of Revenue</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].cogsSmall && parseFloat(arr[d].cogsSmall).toFixed(2)}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].cogsSmall && parseFloat(arr[d].cogsSmall).toFixed(2)}</td>)}
             </tr>
             <tr>
               <td className='bold'>Gross Profit</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].gpSmall && parseFloat(arr[d].gpSmall).toFixed(2)}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].gpSmall && parseFloat(arr[d].gpSmall).toFixed(2)}</td>)}
             </tr>
             <tr>
               <td className='bold crimson'>Gross Profit Mgn</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} ${greenOrRed(arr[d] && arr[d].gpMargin, 40, 0)}`}>{arr[d] && arr[d].gpMargin + ' %'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov ${greenOrRed(arr[d] && arr[d].gpMargin, 40, 0)}`}>{arr[d] && arr[d].gpMargin + ' %'}</td>)}
             </tr>
             <tr>
               <td className='bold'>R & D</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].rndSmall && parseFloat(arr[d].rndSmall).toFixed(2)}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].rndSmall && parseFloat(arr[d].rndSmall).toFixed(2)}</td>)}
             </tr>
             {_.get(arr, '0.sm') !== undefined && _.get(arr, '0.ga') !== undefined ? <React.Fragment><tr>
               <td className='bold'>S & M</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].smSmall >= 0 && parseFloat(arr[d].smSmall).toFixed(2)}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].smSmall >= 0 && parseFloat(arr[d].smSmall).toFixed(2)}</td>)}
             </tr><tr>
               <td className='bold'>G & A</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].gaSmall >= 0 && parseFloat(arr[d].gaSmall).toFixed(2)}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].gaSmall >= 0 && parseFloat(arr[d].gaSmall).toFixed(2)}</td>)}
             </tr></React.Fragment> :
             <tr>
               <td className='bold'>SG & A</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d}`}>{arr[d] && arr[d].sgnaSmall && parseFloat(arr[d].sgnaSmall).toFixed(2)}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].sgnaSmall && parseFloat(arr[d].sgnaSmall).toFixed(2)}</td>)}
             </tr>}
             {_.get(arr, '0.ie') !== undefined ? <tr>
               <td className=''>Interest Expense</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].ieSmall >= 0 && parseFloat(arr[d].ieSmall).toFixed(2)}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].ieSmall >= 0 && parseFloat(arr[d].ieSmall).toFixed(2)}</td>)}
             </tr> : null}
             {_.get(arr, '0.toe') !== undefined ? <tr>
               <td className=''>Operating Expense</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].toeSmall >= 0 && parseFloat(arr[d].toeSmall).toFixed(2)}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].toeSmall >= 0 && parseFloat(arr[d].toeSmall).toFixed(2)}</td>)}
             </tr> : null}
             <tr>
               <td className=''>Operating Income</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].oiSmall && parseFloat(arr[d].oiSmall).toFixed(2)}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].oiSmall && parseFloat(arr[d].oiSmall).toFixed(2)}</td>)}
             </tr>
             <tr>
               <td className='bold crimson'>Operating Mgn</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} ${greenOrRed(arr[d] && arr[d].oiMargin, 20, 0)}`}>{arr[d] && arr[d].oiMargin + ' %'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov ${greenOrRed(arr[d] && arr[d].oiMargin, 20, 0)}`}>{arr[d] && arr[d].oiMargin + ' %'}</td>)}
             </tr>
             <tr>
               <td className=''>Net Income</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].niSmall && parseFloat(arr[d].niSmall).toFixed(2)}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].niSmall && parseFloat(arr[d].niSmall).toFixed(2)}</td>)}
             </tr>
             <tr>
               <td className='bold crimson'>Net Income Mgn</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} ${greenOrRed(arr[d] && arr[d].niMargin, 20, -20)}`}>{arr[d] && arr[d].niMargin + ' %'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov ${greenOrRed(arr[d] && arr[d].niMargin, 20, -20)}`}>{arr[d] && arr[d].niMargin + ' %'}</td>)}
             </tr>
           </tbody>
         </table>
