@@ -26,7 +26,7 @@ export class IncomeTable extends React.Component {
   }
 
   render() {
-    const { profile, prop = 'income_and_revenue', imgProp = 'income_table', count = 4 } = this.props;
+    const { profile, prop = 'income_and_revenue', imgProp = 'income_table', count = 4, isSmall } = this.props;
     const { copied } = this.state;
     if (!profile) {
       return (
@@ -149,18 +149,18 @@ export class IncomeTable extends React.Component {
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov ${greenOrRed(arr[d] && arr[d].gpMargin, 40, 0)}`}>{arr[d] && arr[d].gpMargin + ' %'}</td>)}
             </tr>
             <tr>
-              <td className='bold'>R & D</td>
+              <td className='bold'>{isSmall ? 'R & D' : 'Research and Development'}</td>
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].rndSmall && parseFloat(arr[d].rndSmall).toFixed(2)}</td>)}
             </tr>
             {_.get(arr, '0.sm') !== undefined && _.get(arr, '0.ga') !== undefined ? <React.Fragment><tr>
-              <td className='bold'>S & M</td>
+              <td className='bold'>{isSmall ? 'S & M' : 'Selling & Marketing Expense'}</td>
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].smSmall >= 0 && parseFloat(arr[d].smSmall).toFixed(2)}</td>)}
             </tr><tr>
-              <td className='bold'>G & A</td>
+              <td className='bold'>{isSmall ? 'G & A' : 'General & Administrative Expense'}</td>
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov lighter`}>{arr[d] && arr[d].gaSmall >= 0 && parseFloat(arr[d].gaSmall).toFixed(2)}</td>)}
             </tr></React.Fragment> :
             <tr>
-              <td className='bold'>SG & A</td>
+              <td className='bold'>{isSmall ? 'SG & A' : 'Selling, General & Administrative Expense'}</td>
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].sgnaSmall && parseFloat(arr[d].sgnaSmall).toFixed(2)}</td>)}
             </tr>}
             {_.get(arr, '0.ie') !== undefined ? <tr>

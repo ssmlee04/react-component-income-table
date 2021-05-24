@@ -75,7 +75,8 @@ function (_React$Component) {
           _this$props$imgProp = _this$props.imgProp,
           imgProp = _this$props$imgProp === void 0 ? 'income_table' : _this$props$imgProp,
           _this$props$count = _this$props.count,
-          count = _this$props$count === void 0 ? 4 : _this$props$count;
+          count = _this$props$count === void 0 ? 4 : _this$props$count,
+          isSmall = _this$props.isSmall;
       var copied = this.state.copied;
 
       if (!profile) {
@@ -252,28 +253,28 @@ function (_React$Component) {
         }, arr[d] && arr[d].gpMargin + ' %');
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
-      }, "R & D"), _lodash["default"].range(count).map(function (d) {
+      }, isSmall ? 'R & D' : 'Research and Development'), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov lighter")
         }, arr[d] && arr[d].rndSmall && parseFloat(arr[d].rndSmall).toFixed(2));
       })), _lodash["default"].get(arr, '0.sm') !== undefined && _lodash["default"].get(arr, '0.ga') !== undefined ? _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
-      }, "S & M"), _lodash["default"].range(count).map(function (d) {
+      }, isSmall ? 'S & M' : 'Selling & Marketing Expense'), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov lighter")
         }, arr[d] && arr[d].smSmall >= 0 && parseFloat(arr[d].smSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
-      }, "G & A"), _lodash["default"].range(count).map(function (d) {
+      }, isSmall ? 'G & A' : 'General & Administrative Expense'), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov lighter")
         }, arr[d] && arr[d].gaSmall >= 0 && parseFloat(arr[d].gaSmall).toFixed(2));
       }))) : _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
-      }, "SG & A"), _lodash["default"].range(count).map(function (d) {
+      }, isSmall ? 'SG & A' : 'Selling, General & Administrative Expense'), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov")
