@@ -64,5 +64,5 @@ div.react-components-show-button button.react-components-show-url {
   color: crimson;
 }
 .hov:hover {
-  background-color: #eaffea;
+  background-color: rgba(0, 0, 128, 0.1);
 }
