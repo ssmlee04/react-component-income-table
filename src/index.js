@@ -26,15 +26,15 @@ export class IncomeTable extends React.Component {
   }
 
   render() {
-    const { profile, prop = 'income_and_revenue', imgProp = 'income_table' } = this.props;
+    const { profile, prop = 'income_and_revenue', imgProp = 'income_table', count = 4 } = this.props;
     const { copied } = this.state;
     if (!profile) {
       return (
-        <div style={{ fontSize: 8 }}>Not available at this time... </div>
+        <div style={{ fontSize: 12 }}>Not available at this time... </div>
       );
     }
     if (profile[imgProp] && profile[imgProp].url) {
-      const btnClass = copied ? 'react-components-show-url btn btn-sm btn-danger disabled font-8' : 'react-components-show-url btn btn-sm btn-warning font-8';
+      const btnClass = copied ? 'react-components-show-url btn btn-sm btn-danger disabled font-12' : 'react-components-show-url btn btn-sm btn-warning font-12';
       const btnText = copied ? 'Copied' : 'Copy Img';
       return (
         <div className='react-components-show-button'>
@@ -117,127 +117,79 @@ export class IncomeTable extends React.Component {
 
     const data = calculateMargins(_.get(profile, `${prop}.data`, []));
     const unit = _.get(data, '0.unit') || 'million';
-    const arr = data.slice(-4);
+    const arr = data.slice(count * -1);
 
     return (
-      <div style={{ width: '100%', padding: 5, fontSize: 7 }}>
-        <div style={{ color: 'darkred', fontWeight: 'bold', fontSize: 7, marginBottom: 3 }}>{profile.ticker} - {profile.name}<span style={{ marginLeft: 5, color: 'green' }}>Income Statement</span></div>
-        <table className='table table-sm' style={{ marginBottom: 0 }}>
+      <div style={{ width: '100%', padding: 5 }}>
+        <div style={{ color: 'darkred', fontWeight: 'bold', fontSize: 12, marginBottom: 3 }}>{profile.ticker} - {profile.name}<span style={{ marginLeft: 5, color: 'green' }}>Income Statement</span></div>
+        <table className='table table-sm' style={{ marginBottom: 0, fontSize: 10 }}>
           <thead className='bold'>
             <th className='left lighter'>Unit: ({unit})</th>
-            <th className='bg-lightgray-ultra-5'>{arr[0] && arr[0].quarterStr}</th>
-            <th className='bg-lightgray-ultra-4'>{arr[1] && arr[1].quarterStr}</th>
-            <th className='bg-lightgray-ultra-3'>{arr[2] && arr[2].quarterStr}</th>
-            <th className='bg-lightgray-ultra-2'>{arr[3] && arr[3].quarterStr}</th>
+            {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d}`}>{arr[d] && arr[d].quarterStr}</th>)}
           </thead>
           <tbody>
             <tr>
               <td className='bold'>Qtr Revenue</td>
-              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].revSmall && parseFloat(arr[0].revSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].revSmall && parseFloat(arr[1].revSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].revSmall && parseFloat(arr[2].revSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].revSmall && parseFloat(arr[3].revSmall).toFixed(2)}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].revSmall && parseFloat(arr[d].revSmall).toFixed(2)}</th>)}
             </tr>
             <tr>
               <td className='bold crimson'>Rev Growth yoy</td>
-              <td className={`bg-lightgray-ultra-5 bold ${greenOrRed(arr[0] && arr[0].revenueGrowthYoy, 40, -20)}`}>{arr[0] && arr[0].revenueGrowthYoy + ' %'}</td>
-              <td className={`bg-lightgray-ultra-4 bold ${greenOrRed(arr[1] && arr[1].revenueGrowthYoy, 40, -20)}`}>{arr[1] && arr[1].revenueGrowthYoy + ' %'}</td>
-              <td className={`bg-lightgray-ultra-3 bold ${greenOrRed(arr[2] && arr[2].revenueGrowthYoy, 40, -20)}`}>{arr[2] && arr[2].revenueGrowthYoy + ' %'}</td>
-              <td className={`bg-lightgray-ultra-2 bold ${greenOrRed(arr[3] && arr[3].revenueGrowthYoy, 40, -20)}`}>{arr[3] && arr[3].revenueGrowthYoy + ' %'}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} ${greenOrRed(arr[d] && arr[d].revenueGrowthYoy, 40, -20)}`}>{arr[d] && arr[d].revenueGrowthYoy + ' %'}</th>)}
             </tr>
             <tr>
-              <td className=''>Cost of Revenue</td>
-              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].cogsSmall && parseFloat(arr[0].cogsSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].cogsSmall && parseFloat(arr[1].cogsSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].cogsSmall && parseFloat(arr[2].cogsSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].cogsSmall && parseFloat(arr[3].cogsSmall).toFixed(2)}</td>
+              <td className='bold'>Cost of Revenue</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].cogsSmall && parseFloat(arr[d].cogsSmall).toFixed(2)}</th>)}
             </tr>
             <tr>
               <td className='bold'>Gross Profit</td>
-              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].gpSmall && parseFloat(arr[0].gpSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].gpSmall && parseFloat(arr[1].gpSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].gpSmall && parseFloat(arr[2].gpSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].gpSmall && parseFloat(arr[3].gpSmall).toFixed(2)}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].gpSmall && parseFloat(arr[d].gpSmall).toFixed(2)}</th>)}
             </tr>
             <tr>
               <td className='bold crimson'>Gross Profit Mgn</td>
-              <td className={`bg-lightgray-ultra-5 bold ${greenOrRed(arr[0] && arr[0].gpMargin, 40, 0)}`}>{arr[0] && arr[0].gpMargin + ' %'}</td>
-              <td className={`bg-lightgray-ultra-4 bold ${greenOrRed(arr[1] && arr[1].gpMargin, 40, 0)}`}>{arr[1] && arr[1].gpMargin + ' %'}</td>
-              <td className={`bg-lightgray-ultra-3 bold ${greenOrRed(arr[2] && arr[2].gpMargin, 40, 0)}`}>{arr[2] && arr[2].gpMargin + ' %'}</td>
-              <td className={`bg-lightgray-ultra-2 bold ${greenOrRed(arr[3] && arr[3].gpMargin, 40, 0)}`}>{arr[3] && arr[3].gpMargin + ' %'}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} ${greenOrRed(arr[d] && arr[d].gpMargin, 40, 0)}`}>{arr[d] && arr[d].gpMargin + ' %'}</th>)}
             </tr>
             <tr>
               <td className='bold'>R & D</td>
-              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].rndSmall && parseFloat(arr[0].rndSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].rndSmall && parseFloat(arr[1].rndSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].rndSmall && parseFloat(arr[2].rndSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].rndSmall && parseFloat(arr[3].rndSmall).toFixed(2)}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].rndSmall && parseFloat(arr[d].rndSmall).toFixed(2)}</th>)}
             </tr>
             {_.get(arr, '0.sm') !== undefined && _.get(arr, '0.ga') !== undefined ? <React.Fragment><tr>
               <td className='bold'>S & M</td>
-              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].smSmall >= 0 && (arr[0].smSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].smSmall >= 0 && (arr[1].smSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].smSmall >= 0 && (arr[2].smSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].smSmall >= 0 && (arr[3].smSmall).toFixed(2)}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].smSmall >= 0 && parseFloat(arr[d].smSmall).toFixed(2)}</th>)}
             </tr><tr>
               <td className='bold'>G & A</td>
-              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].gaSmall >= 0 && (arr[0].gaSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].gaSmall >= 0 && (arr[1].gaSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].gaSmall >= 0 && (arr[2].gaSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].gaSmall >= 0 && (arr[3].gaSmall).toFixed(2)}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].gaSmall >= 0 && parseFloat(arr[d].gaSmall).toFixed(2)}</th>)}
             </tr></React.Fragment> :
             <tr>
               <td className='bold'>SG & A</td>
-              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].sgnaSmall && parseFloat(arr[0].sgnaSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].sgnaSmall && parseFloat(arr[1].sgnaSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].sgnaSmall && parseFloat(arr[2].sgnaSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].sgnaSmall && parseFloat(arr[3].sgnaSmall).toFixed(2)}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d}`}>{arr[d] && arr[d].sgnaSmall && parseFloat(arr[d].sgnaSmall).toFixed(2)}</th>)}
             </tr>}
             {_.get(arr, '0.ie') !== undefined ? <tr>
               <td className=''>Interest Expense</td>
-              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].ieSmall >= 0 && (arr[0].ieSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].ieSmall >= 0 && (arr[1].ieSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].ieSmall >= 0 && (arr[2].ieSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].ieSmall >= 0 && (arr[3].ieSmall).toFixed(2)}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].ieSmall >= 0 && parseFloat(arr[d].ieSmall).toFixed(2)}</th>)}
             </tr> : null}
             {_.get(arr, '0.toe') !== undefined ? <tr>
               <td className=''>Operating Expense</td>
-              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].toeSmall >= 0 && (arr[0].toeSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].toeSmall >= 0 && (arr[1].toeSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].toeSmall >= 0 && (arr[2].toeSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].toeSmall >= 0 && (arr[3].toeSmall).toFixed(2)}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].toeSmall >= 0 && parseFloat(arr[d].toeSmall).toFixed(2)}</th>)}
             </tr> : null}
             <tr>
               <td className=''>Operating Income</td>
-              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].oiSmall && parseFloat(arr[0].oiSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].oiSmall && parseFloat(arr[1].oiSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].oiSmall && parseFloat(arr[2].oiSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].oiSmall && parseFloat(arr[3].oiSmall).toFixed(2)}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].oiSmall && parseFloat(arr[d].oiSmall).toFixed(2)}</th>)}
             </tr>
             <tr>
               <td className='bold crimson'>Operating Mgn</td>
-              <td className={`bg-lightgray-ultra-5 bold ${greenOrRed(arr[0] && arr[0].oiMargin, 20, 0)}`}>{arr[0] && arr[0].oiMargin + ' %'}</td>
-              <td className={`bg-lightgray-ultra-4 bold ${greenOrRed(arr[1] && arr[1].oiMargin, 20, 0)}`}>{arr[1] && arr[1].oiMargin + ' %'}</td>
-              <td className={`bg-lightgray-ultra-3 bold ${greenOrRed(arr[2] && arr[2].oiMargin, 20, 0)}`}>{arr[2] && arr[2].oiMargin + ' %'}</td>
-              <td className={`bg-lightgray-ultra-2 bold ${greenOrRed(arr[3] && arr[3].oiMargin, 20, 0)}`}>{arr[3] && arr[3].oiMargin + ' %'}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} ${greenOrRed(arr[d] && arr[d].oiMargin, 20, 0)}`}>{arr[d] && arr[d].oiMargin + ' %'}</th>)}
             </tr>
             <tr>
               <td className=''>Net Income</td>
-              <td className='bg-lightgray-ultra-5'>{arr[0] && arr[0].niSmall && parseFloat(arr[0].niSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-4'>{arr[1] && arr[1].niSmall && parseFloat(arr[1].niSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-3'>{arr[2] && arr[2].niSmall && parseFloat(arr[2].niSmall).toFixed(2)}</td>
-              <td className='bg-lightgray-ultra-2'>{arr[3] && arr[3].niSmall && parseFloat(arr[3].niSmall).toFixed(2)}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} lighter`}>{arr[d] && arr[d].niSmall && parseFloat(arr[d].niSmall).toFixed(2)}</th>)}
             </tr>
             <tr>
               <td className='bold crimson'>Net Income Mgn</td>
-              <td className={`bg-lightgray-ultra-5 bold ${greenOrRed(arr[0] && arr[0].niMargin, 20, -20)}`}>{arr[0] && arr[0].niMargin + ' %'}</td>
-              <td className={`bg-lightgray-ultra-4 bold ${greenOrRed(arr[1] && arr[1].niMargin, 20, -20)}`}>{arr[1] && arr[1].niMargin + ' %'}</td>
-              <td className={`bg-lightgray-ultra-3 bold ${greenOrRed(arr[2] && arr[2].niMargin, 20, -20)}`}>{arr[2] && arr[2].niMargin + ' %'}</td>
-              <td className={`bg-lightgray-ultra-2 bold ${greenOrRed(arr[3] && arr[3].niMargin, 20, -20)}`}>{arr[3] && arr[3].niMargin + ' %'}</td>
+              {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} ${greenOrRed(arr[d] && arr[d].niMargin, 20, -20)}`}>{arr[d] && arr[d].niMargin + ' %'}</th>)}
             </tr>
           </tbody>
         </table>
-        <div style={{ fontSize: 8, color: 'gray' }}>Generated by <span style={{ color: 'darkred' }}>@earningsfly</span> with <span style={{ fontSize: 16, color: 'red' }}>🚀</span></div>
+        <div style={{ fontSize: 12, color: 'gray' }}>Generated by <span style={{ color: 'darkred' }}>@earningsfly</span> with <span style={{ fontSize: 16, color: 'red' }}>🚀</span></div>
       </div>
     );
   }

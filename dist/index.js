@@ -73,19 +73,21 @@ function (_React$Component) {
           _this$props$prop = _this$props.prop,
           prop = _this$props$prop === void 0 ? 'income_and_revenue' : _this$props$prop,
           _this$props$imgProp = _this$props.imgProp,
-          imgProp = _this$props$imgProp === void 0 ? 'income_table' : _this$props$imgProp;
+          imgProp = _this$props$imgProp === void 0 ? 'income_table' : _this$props$imgProp,
+          _this$props$count = _this$props.count,
+          count = _this$props$count === void 0 ? 4 : _this$props$count;
       var copied = this.state.copied;
 
       if (!profile) {
         return _react["default"].createElement("div", {
           style: {
-            fontSize: 8
+            fontSize: 12
           }
         }, "Not available at this time... ");
       }
 
       if (profile[imgProp] && profile[imgProp].url) {
-        var btnClass = copied ? 'react-components-show-url btn btn-sm btn-danger disabled font-8' : 'react-components-show-url btn btn-sm btn-warning font-8';
+        var btnClass = copied ? 'react-components-show-url btn btn-sm btn-danger disabled font-12' : 'react-components-show-url btn btn-sm btn-warning font-12';
         var btnText = copied ? 'Copied' : 'Copy Img';
         return _react["default"].createElement("div", {
           className: "react-components-show-button"
@@ -180,18 +182,17 @@ function (_React$Component) {
 
       var data = calculateMargins(_lodash["default"].get(profile, "".concat(prop, ".data"), []));
       var unit = _lodash["default"].get(data, '0.unit') || 'million';
-      var arr = data.slice(-4);
+      var arr = data.slice(count * -1);
       return _react["default"].createElement("div", {
         style: {
           width: '100%',
-          padding: 5,
-          fontSize: 7
+          padding: 5
         }
       }, _react["default"].createElement("div", {
         style: {
           color: 'darkred',
           fontWeight: 'bold',
-          fontSize: 7,
+          fontSize: 12,
           marginBottom: 3
         }
       }, profile.ticker, " - ", profile.name, _react["default"].createElement("span", {
@@ -202,173 +203,126 @@ function (_React$Component) {
       }, "Income Statement")), _react["default"].createElement("table", {
         className: "table table-sm",
         style: {
-          marginBottom: 0
+          marginBottom: 0,
+          fontSize: 10
         }
       }, _react["default"].createElement("thead", {
         className: "bold"
       }, _react["default"].createElement("th", {
         className: "left lighter"
-      }, "Unit: (", unit, ")"), _react["default"].createElement("th", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].quarterStr), _react["default"].createElement("th", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].quarterStr), _react["default"].createElement("th", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].quarterStr), _react["default"].createElement("th", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].quarterStr)), _react["default"].createElement("tbody", null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "Unit: (", unit, ")"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d)
+        }, arr[d] && arr[d].quarterStr);
+      })), _react["default"].createElement("tbody", null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
-      }, "Qtr Revenue"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].revSmall && parseFloat(arr[0].revSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].revSmall && parseFloat(arr[1].revSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].revSmall && parseFloat(arr[2].revSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].revSmall && parseFloat(arr[3].revSmall).toFixed(2))), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "Qtr Revenue"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " lighter")
+        }, arr[d] && arr[d].revSmall && parseFloat(arr[d].revSmall).toFixed(2));
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold crimson"
-      }, "Rev Growth yoy"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5 bold ".concat(greenOrRed(arr[0] && arr[0].revenueGrowthYoy, 40, -20))
-      }, arr[0] && arr[0].revenueGrowthYoy + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4 bold ".concat(greenOrRed(arr[1] && arr[1].revenueGrowthYoy, 40, -20))
-      }, arr[1] && arr[1].revenueGrowthYoy + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3 bold ".concat(greenOrRed(arr[2] && arr[2].revenueGrowthYoy, 40, -20))
-      }, arr[2] && arr[2].revenueGrowthYoy + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2 bold ".concat(greenOrRed(arr[3] && arr[3].revenueGrowthYoy, 40, -20))
-      }, arr[3] && arr[3].revenueGrowthYoy + ' %')), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
-        className: ""
-      }, "Cost of Revenue"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].cogsSmall && parseFloat(arr[0].cogsSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].cogsSmall && parseFloat(arr[1].cogsSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].cogsSmall && parseFloat(arr[2].cogsSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].cogsSmall && parseFloat(arr[3].cogsSmall).toFixed(2))), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "Rev Growth yoy"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " ").concat(greenOrRed(arr[d] && arr[d].revenueGrowthYoy, 40, -20))
+        }, arr[d] && arr[d].revenueGrowthYoy + ' %');
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
-      }, "Gross Profit"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].gpSmall && parseFloat(arr[0].gpSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].gpSmall && parseFloat(arr[1].gpSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].gpSmall && parseFloat(arr[2].gpSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].gpSmall && parseFloat(arr[3].gpSmall).toFixed(2))), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "Cost of Revenue"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " lighter")
+        }, arr[d] && arr[d].cogsSmall && parseFloat(arr[d].cogsSmall).toFixed(2));
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+        className: "bold"
+      }, "Gross Profit"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " lighter")
+        }, arr[d] && arr[d].gpSmall && parseFloat(arr[d].gpSmall).toFixed(2));
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold crimson"
-      }, "Gross Profit Mgn"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5 bold ".concat(greenOrRed(arr[0] && arr[0].gpMargin, 40, 0))
-      }, arr[0] && arr[0].gpMargin + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4 bold ".concat(greenOrRed(arr[1] && arr[1].gpMargin, 40, 0))
-      }, arr[1] && arr[1].gpMargin + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3 bold ".concat(greenOrRed(arr[2] && arr[2].gpMargin, 40, 0))
-      }, arr[2] && arr[2].gpMargin + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2 bold ".concat(greenOrRed(arr[3] && arr[3].gpMargin, 40, 0))
-      }, arr[3] && arr[3].gpMargin + ' %')), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "Gross Profit Mgn"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " ").concat(greenOrRed(arr[d] && arr[d].gpMargin, 40, 0))
+        }, arr[d] && arr[d].gpMargin + ' %');
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
-      }, "R & D"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].rndSmall && parseFloat(arr[0].rndSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].rndSmall && parseFloat(arr[1].rndSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].rndSmall && parseFloat(arr[2].rndSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].rndSmall && parseFloat(arr[3].rndSmall).toFixed(2))), _lodash["default"].get(arr, '0.sm') !== undefined && _lodash["default"].get(arr, '0.ga') !== undefined ? _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "R & D"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " lighter")
+        }, arr[d] && arr[d].rndSmall && parseFloat(arr[d].rndSmall).toFixed(2));
+      })), _lodash["default"].get(arr, '0.sm') !== undefined && _lodash["default"].get(arr, '0.ga') !== undefined ? _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
-      }, "S & M"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].smSmall >= 0 && arr[0].smSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].smSmall >= 0 && arr[1].smSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].smSmall >= 0 && arr[2].smSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].smSmall >= 0 && arr[3].smSmall.toFixed(2))), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "S & M"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " lighter")
+        }, arr[d] && arr[d].smSmall >= 0 && parseFloat(arr[d].smSmall).toFixed(2));
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
-      }, "G & A"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].gaSmall >= 0 && arr[0].gaSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].gaSmall >= 0 && arr[1].gaSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].gaSmall >= 0 && arr[2].gaSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].gaSmall >= 0 && arr[3].gaSmall.toFixed(2)))) : _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "G & A"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " lighter")
+        }, arr[d] && arr[d].gaSmall >= 0 && parseFloat(arr[d].gaSmall).toFixed(2));
+      }))) : _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
-      }, "SG & A"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].sgnaSmall && parseFloat(arr[0].sgnaSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].sgnaSmall && parseFloat(arr[1].sgnaSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].sgnaSmall && parseFloat(arr[2].sgnaSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].sgnaSmall && parseFloat(arr[3].sgnaSmall).toFixed(2))), _lodash["default"].get(arr, '0.ie') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "SG & A"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d)
+        }, arr[d] && arr[d].sgnaSmall && parseFloat(arr[d].sgnaSmall).toFixed(2));
+      })), _lodash["default"].get(arr, '0.ie') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: ""
-      }, "Interest Expense"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].ieSmall >= 0 && arr[0].ieSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].ieSmall >= 0 && arr[1].ieSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].ieSmall >= 0 && arr[2].ieSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].ieSmall >= 0 && arr[3].ieSmall.toFixed(2))) : null, _lodash["default"].get(arr, '0.toe') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "Interest Expense"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " lighter")
+        }, arr[d] && arr[d].ieSmall >= 0 && parseFloat(arr[d].ieSmall).toFixed(2));
+      })) : null, _lodash["default"].get(arr, '0.toe') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: ""
-      }, "Operating Expense"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].toeSmall >= 0 && arr[0].toeSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].toeSmall >= 0 && arr[1].toeSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].toeSmall >= 0 && arr[2].toeSmall.toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].toeSmall >= 0 && arr[3].toeSmall.toFixed(2))) : null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "Operating Expense"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " lighter")
+        }, arr[d] && arr[d].toeSmall >= 0 && parseFloat(arr[d].toeSmall).toFixed(2));
+      })) : null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: ""
-      }, "Operating Income"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].oiSmall && parseFloat(arr[0].oiSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].oiSmall && parseFloat(arr[1].oiSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].oiSmall && parseFloat(arr[2].oiSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].oiSmall && parseFloat(arr[3].oiSmall).toFixed(2))), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "Operating Income"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " lighter")
+        }, arr[d] && arr[d].oiSmall && parseFloat(arr[d].oiSmall).toFixed(2));
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold crimson"
-      }, "Operating Mgn"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5 bold ".concat(greenOrRed(arr[0] && arr[0].oiMargin, 20, 0))
-      }, arr[0] && arr[0].oiMargin + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4 bold ".concat(greenOrRed(arr[1] && arr[1].oiMargin, 20, 0))
-      }, arr[1] && arr[1].oiMargin + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3 bold ".concat(greenOrRed(arr[2] && arr[2].oiMargin, 20, 0))
-      }, arr[2] && arr[2].oiMargin + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2 bold ".concat(greenOrRed(arr[3] && arr[3].oiMargin, 20, 0))
-      }, arr[3] && arr[3].oiMargin + ' %')), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "Operating Mgn"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " ").concat(greenOrRed(arr[d] && arr[d].oiMargin, 20, 0))
+        }, arr[d] && arr[d].oiMargin + ' %');
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: ""
-      }, "Net Income"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5"
-      }, arr[0] && arr[0].niSmall && parseFloat(arr[0].niSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4"
-      }, arr[1] && arr[1].niSmall && parseFloat(arr[1].niSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3"
-      }, arr[2] && arr[2].niSmall && parseFloat(arr[2].niSmall).toFixed(2)), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2"
-      }, arr[3] && arr[3].niSmall && parseFloat(arr[3].niSmall).toFixed(2))), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }, "Net Income"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " lighter")
+        }, arr[d] && arr[d].niSmall && parseFloat(arr[d].niSmall).toFixed(2));
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold crimson"
-      }, "Net Income Mgn"), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-5 bold ".concat(greenOrRed(arr[0] && arr[0].niMargin, 20, -20))
-      }, arr[0] && arr[0].niMargin + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-4 bold ".concat(greenOrRed(arr[1] && arr[1].niMargin, 20, -20))
-      }, arr[1] && arr[1].niMargin + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-3 bold ".concat(greenOrRed(arr[2] && arr[2].niMargin, 20, -20))
-      }, arr[2] && arr[2].niMargin + ' %'), _react["default"].createElement("td", {
-        className: "bg-lightgray-ultra-2 bold ".concat(greenOrRed(arr[3] && arr[3].niMargin, 20, -20))
-      }, arr[3] && arr[3].niMargin + ' %')))), _react["default"].createElement("div", {
+      }, "Net Income Mgn"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("th", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " ").concat(greenOrRed(arr[d] && arr[d].niMargin, 20, -20))
+        }, arr[d] && arr[d].niMargin + ' %');
+      })))), _react["default"].createElement("div", {
         style: {
-          fontSize: 8,
+          fontSize: 12,
           color: 'gray'
         }
       }, "Generated by ", _react["default"].createElement("span", {

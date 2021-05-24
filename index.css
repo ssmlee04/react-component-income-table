@@ -15,17 +15,29 @@ div.react-components-show-button button.react-components-show-url {
     top: 2px;
     right: 2px;
 }
-.bg-lightgray-ultra-2 {
-  background-color: #ebebeb;
+.bg-lightgray-ul-1 {
+  background-color: #fbfbfb;
 }
-.bg-lightgray-ultra-3 {
-  background-color: #f1f1f1;
+.bg-lightgray-ul-2 {
+  background-color: #f9f9f9;
 }
-.bg-lightgray-ultra-4 {
+.bg-lightgray-ul-3 {
   background-color: #f6f6f6;
 }
-.bg-lightgray-ultra-5 {
-  background-color: #fafafa;
+.bg-lightgray-ul-4 {
+  background-color: #f3f3f3;
+}
+.bg-lightgray-ul-5 {
+  background-color: #f0f0f0;
+}
+.bg-lightgray-ul-6 {
+  background-color: #ececec;
+}
+.bg-lightgray-ul-7 {
+  background-color: #e9e9e9;
+}
+.bg-lightgray-ul-8 {
+  background-color: #e6e6e6;
 }
 .bold {
   font-weight: bold;
