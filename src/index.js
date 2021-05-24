@@ -5,8 +5,8 @@ import './../index.css';
 
 const greenOrRed = (str, high, low) => {
   const v = parseFloat(str);
-  if (v > high) return 'green';
-  if (v < low) return 'red';
+  if (v > high) return 'green bold';
+  if (v < low) return 'red bold';
 };
 
 export class IncomeTable extends React.Component {

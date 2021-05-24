@@ -35,8 +35,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 var greenOrRed = function greenOrRed(str, high, low) {
   var v = parseFloat(str);
-  if (v > high) return 'green';
-  if (v < low) return 'red';
+  if (v > high) return 'green bold';
+  if (v < low) return 'red bold';
 };
 
 var IncomeTable =
