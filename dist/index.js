@@ -31,12 +31,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-var greenOrRed = function greenOrRed(str, high, low) {
-  var v = parseFloat(str);
-  if (v > high) return 'green bold';
-  if (v < low) return 'red bold';
-};
-
 var IncomeTable =
 /*#__PURE__*/
 function (_React$Component) {
@@ -53,15 +47,6 @@ function (_React$Component) {
   }
 
   _createClass(IncomeTable, [{
-    key: "shouldComponentUpdate",
-    value: function shouldComponentUpdate(nextProps, nextState) {
-      var profile = this.props.profile;
-      if (!profile) return true;
-      if (nextState.copied) return true;
-      if (profile.ticker !== nextProps.profile.ticker) return true;
-      return false;
-    }
-  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -74,7 +59,9 @@ function (_React$Component) {
           imgProp = _this$props$imgProp === void 0 ? 'income_table' : _this$props$imgProp,
           _this$props$count = _this$props.count,
           count = _this$props$count === void 0 ? 4 : _this$props$count,
-          isSmall = _this$props.isSmall;
+          isSmall = _this$props.isSmall,
+          _this$props$theme = _this$props.theme,
+          theme = _this$props$theme === void 0 ? 'light' : _this$props$theme;
       var copied = this.state.copied;
 
       if (!profile) {
@@ -108,6 +95,12 @@ function (_React$Component) {
           value: btnText
         }, btnText)));
       }
+
+      var greenOrRed = function greenOrRed(str, high, low) {
+        var v = parseFloat(str);
+        if (v > high) return 'bold theme-green-' + theme;
+        if (v < low) return 'bold theme-red-' + theme;
+      };
 
       var calculateMargins = function calculateMargins(data) {
         var divider = 1000;
@@ -186,19 +179,15 @@ function (_React$Component) {
         style: {
           width: '100%',
           padding: 5
-        }
+        },
+        className: "theme-black-".concat(theme)
       }, _react["default"].createElement("div", {
+        className: "theme-darkred-".concat(theme),
         style: {
-          color: 'darkred',
-          fontWeight: 'bold',
-          fontSize: 12,
-          marginBottom: 3
+          fontWeight: 'bold'
         }
-      }, profile.ticker, " - ", profile.name, _react["default"].createElement("span", {
-        style: {
-          marginLeft: 5,
-          color: 'green'
-        }
+      }, profile.ticker, " - ", profile.name, "\xA0", _react["default"].createElement("span", {
+        className: "theme-green-".concat(theme)
       }, "Income Statement")), _react["default"].createElement("table", {
         className: "table table-sm",
         style: {
@@ -222,7 +211,7 @@ function (_React$Component) {
           className: "bg-lightgray-ul-".concat(d, " hov lighter")
         }, arr[d] && arr[d].revSmall && parseFloat(arr[d].revSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
-        className: "bold crimson"
+        className: "bold theme-red-".concat(theme)
       }, "Rev Growth yoy"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
@@ -243,7 +232,7 @@ function (_React$Component) {
           className: "bg-lightgray-ul-".concat(d, " hov lighter")
         }, arr[d] && arr[d].gpSmall && parseFloat(arr[d].gpSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
-        className: "bold crimson"
+        className: "bold theme-red-".concat(theme)
       }, "Gross Profit Mgn"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
@@ -299,7 +288,7 @@ function (_React$Component) {
           className: "bg-lightgray-ul-".concat(d, " hov lighter")
         }, arr[d] && arr[d].oiSmall && parseFloat(arr[d].oiSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
-        className: "bold crimson"
+        className: "bold theme-red-".concat(theme)
       }, "Operating Mgn"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
@@ -313,7 +302,7 @@ function (_React$Component) {
           className: "bg-lightgray-ul-".concat(d, " hov lighter")
         }, arr[d] && arr[d].niSmall && parseFloat(arr[d].niSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
-        className: "bold crimson"
+        className: "bold theme-red-".concat(theme)
       }, "Net Income Mgn"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
@@ -322,18 +311,19 @@ function (_React$Component) {
       })))), _react["default"].createElement("div", {
         style: {
           fontSize: 12,
-          color: 'gray'
+          padding: 5,
+          paddingTop: 2
         }
-      }, "Generated by ", _react["default"].createElement("span", {
-        style: {
-          color: 'darkred'
-        }
+      }, "Generated by ", _react["default"].createElement("a", {
+        href: "https://twitter.com/earningsfly",
+        target: "_blank",
+        className: "theme-darkred-".concat(theme)
       }, "@earningsfly"), " with ", _react["default"].createElement("span", {
         style: {
           fontSize: 16,
           color: 'red'
         }
-      }, "\uD83D\uDE80")));
+      }, "\u2764\uFE0F")));
     }
   }]);
 
