@@ -108,6 +108,7 @@ export class IncomeTable extends React.Component {
 
     const data = calculateMargins(_.get(profile, `${prop}.data`, []));
     const unit = _.get(data, '0.unit') || 'million';
+    const currency = _.get(data, '0.currency') || 'USD';
     const arr = data.slice(count * -1);
 
     return (
@@ -115,7 +116,7 @@ export class IncomeTable extends React.Component {
         <div className={`theme-darkred-${theme}`} style={{ fontWeight: 'bold' }}>{profile.ticker} - {profile.name}&nbsp;<span className={`theme-green-${theme}`}>Income Statement</span></div>
         <table className='table table-sm' style={{ marginBottom: 0, fontSize: 10 }}>
           <thead className='bold'>
-            <th className='left lighter'>Unit: ({unit})</th>
+            <th className='left lighter'>Unit: ({unit} {currency})</th>
             {_.range(count).map(d => <th key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].quarterStr}</th>)}
           </thead>
           <tbody>

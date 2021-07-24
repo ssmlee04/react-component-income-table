@@ -174,6 +174,7 @@ function (_React$Component) {
 
       var data = calculateMargins(_lodash["default"].get(profile, "".concat(prop, ".data"), []));
       var unit = _lodash["default"].get(data, '0.unit') || 'million';
+      var currency = _lodash["default"].get(data, '0.currency') || 'USD';
       var arr = data.slice(count * -1);
       return _react["default"].createElement("div", {
         style: {
@@ -198,7 +199,7 @@ function (_React$Component) {
         className: "bold"
       }, _react["default"].createElement("th", {
         className: "left lighter"
-      }, "Unit: (", unit, ")"), _lodash["default"].range(count).map(function (d) {
+      }, "Unit: (", unit, " ", currency, ")"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("th", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov")
