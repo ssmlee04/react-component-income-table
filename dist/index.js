@@ -198,7 +198,7 @@ function (_React$Component) {
       }, _react["default"].createElement("thead", {
         className: "bold"
       }, _react["default"].createElement("th", {
-        className: "left lighter"
+        className: "left"
       }, "Unit: (", unit, " ", currency, ")"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("th", {
           key: d,
@@ -209,7 +209,7 @@ function (_React$Component) {
       }, "Qtr Revenue"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
-          className: "bg-lightgray-ul-".concat(d, " hov lighter")
+          className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].revSmall && parseFloat(arr[d].revSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold theme-red-".concat(theme)
@@ -223,14 +223,14 @@ function (_React$Component) {
       }, "Cost of Revenue"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
-          className: "bg-lightgray-ul-".concat(d, " hov lighter")
+          className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].cogsSmall && parseFloat(arr[d].cogsSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
       }, "Gross Profit"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
-          className: "bg-lightgray-ul-".concat(d, " hov lighter")
+          className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].gpSmall && parseFloat(arr[d].gpSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold theme-red-".concat(theme)
@@ -244,21 +244,21 @@ function (_React$Component) {
       }, isSmall ? 'R & D' : 'Research and Development'), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
-          className: "bg-lightgray-ul-".concat(d, " hov lighter")
+          className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].rndSmall && parseFloat(arr[d].rndSmall).toFixed(2));
       })), _lodash["default"].get(arr, '0.sm') !== undefined && _lodash["default"].get(arr, '0.ga') !== undefined ? _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
       }, isSmall ? 'S & M' : 'Selling & Marketing Expense'), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
-          className: "bg-lightgray-ul-".concat(d, " hov lighter")
+          className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].smSmall >= 0 && parseFloat(arr[d].smSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
       }, isSmall ? 'G & A' : 'General & Administrative Expense'), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
-          className: "bg-lightgray-ul-".concat(d, " hov lighter")
+          className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].gaSmall >= 0 && parseFloat(arr[d].gaSmall).toFixed(2));
       }))) : _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
@@ -272,21 +272,21 @@ function (_React$Component) {
       }, "Interest Expense"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
-          className: "bg-lightgray-ul-".concat(d, " hov lighter")
+          className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].ieSmall >= 0 && parseFloat(arr[d].ieSmall).toFixed(2));
       })) : null, _lodash["default"].get(arr, '0.toe') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: ""
       }, "Operating Expense"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
-          className: "bg-lightgray-ul-".concat(d, " hov lighter")
+          className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].toeSmall >= 0 && parseFloat(arr[d].toeSmall).toFixed(2));
       })) : null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: ""
       }, "Operating Income"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
-          className: "bg-lightgray-ul-".concat(d, " hov lighter")
+          className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].oiSmall && parseFloat(arr[d].oiSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold theme-red-".concat(theme)
@@ -300,7 +300,7 @@ function (_React$Component) {
       }, "Net Income"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
-          className: "bg-lightgray-ul-".concat(d, " hov lighter")
+          className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].niSmall && parseFloat(arr[d].niSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold theme-red-".concat(theme)
