@@ -206,14 +206,14 @@ function (_React$Component) {
         }, arr[d] && arr[d].quarterStr);
       })), _react["default"].createElement("tbody", null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold"
-      }, "Qtr Revenue"), _lodash["default"].range(count).map(function (d) {
+      }, "Quarterly Revenue"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].revSmall && parseFloat(arr[d].revSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold theme-red-".concat(theme)
-      }, "Rev Growth yoy"), _lodash["default"].range(count).map(function (d) {
+      }, "Revenue Growth (yoy)"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov ").concat(greenOrRed(arr[d] && arr[d].revenueGrowthYoy, 40, -20))
@@ -234,7 +234,7 @@ function (_React$Component) {
         }, arr[d] && arr[d].gpSmall && parseFloat(arr[d].gpSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold theme-red-".concat(theme)
-      }, "Gross Profit Mgn"), _lodash["default"].range(count).map(function (d) {
+      }, "Gross Profit Margin"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov ").concat(greenOrRed(arr[d] && arr[d].gpMargin, 40, 0))
@@ -290,7 +290,7 @@ function (_React$Component) {
         }, arr[d] && arr[d].oiSmall && parseFloat(arr[d].oiSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold theme-red-".concat(theme)
-      }, "Operating Mgn"), _lodash["default"].range(count).map(function (d) {
+      }, "Operating Profit Margin"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov ").concat(greenOrRed(arr[d] && arr[d].oiMargin, 20, 0))
@@ -304,7 +304,7 @@ function (_React$Component) {
         }, arr[d] && arr[d].niSmall && parseFloat(arr[d].niSmall).toFixed(2));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "bold theme-red-".concat(theme)
-      }, "Net Income Mgn"), _lodash["default"].range(count).map(function (d) {
+      }, "Net Profit Margin"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov ").concat(greenOrRed(arr[d] && arr[d].niMargin, 20, -20))
