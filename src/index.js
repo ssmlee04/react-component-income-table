@@ -107,7 +107,7 @@ export class IncomeTable extends React.Component {
     };
 
     const data = calculateMargins(_.get(profile, `${prop}.data`, []));
-    const unit = _.get(data, '0.u') || 'M';
+    const unit = _.get(data, '0.unit') || 'million';
     const currency = _.get(data, '0.currency') || 'USD';
     const arr = data.slice(count * -1);
 
@@ -116,7 +116,7 @@ export class IncomeTable extends React.Component {
         <div className={`theme-darkred-${theme} mb-2`} style={{ fontWeight: 'bold' }}>{profile.ticker} - {profile.name}&nbsp;<span className={`theme-green-${theme}`}>Income Statement</span></div>
         <table className='table table-sm' style={{ marginBottom: 0, fontSize: 10 }}>
           <thead>
-            <th className='normal align-left pl-0'>Currency: {currency}</th>
+            <th className='normal align-left pl-0'>Unit: {unit} {currency}</th>
             {_.range(count).map(d => <th key={d} className={`normal align-right bg-lightgray-ul-${d} hov pr-0`}>{arr[d] && arr[d].quarterStr}</th>)}
           </thead>
           <tbody>
@@ -125,7 +125,7 @@ export class IncomeTable extends React.Component {
             </tr>
             <tr>
               <td className='align-left bold'>Total Revenue</td>
-              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].revSmall && `$${parseFloat(arr[d].revSmall).toFixed(2)}${unit}`}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].revSmall && `$${parseFloat(arr[d].revSmall).toFixed(2)}`}</td>)}
             </tr>
             <tr>
               <td className={`align-left bold theme-green-${theme}`}>Revenue Growth Rate (yoy)</td>
@@ -133,11 +133,11 @@ export class IncomeTable extends React.Component {
             </tr>
             <tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost of Revenue</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].cogsSmall && `$${parseFloat(arr[d].cogsSmall).toFixed(2)}${unit}`}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].cogsSmall && `$${parseFloat(arr[d].cogsSmall).toFixed(2)}`}</td>)}
             </tr>
             <tr>
               <td className='align-left bold'>Gross Profit</td>
-              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].gpSmall && `$${parseFloat(arr[d].gpSmall).toFixed(2)}${unit}`}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].gpSmall && `$${parseFloat(arr[d].gpSmall).toFixed(2)}`}</td>)}
             </tr>
             <tr>
               <td className={`align-left bold theme-green-${theme}`}>Gross Margin</td>
@@ -148,30 +148,30 @@ export class IncomeTable extends React.Component {
             </tr>
             <tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isSmall ? 'R & D' : 'Research and Development'}</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].rndSmall && `$${parseFloat(arr[d].rndSmall).toFixed(2)}${unit}`}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].rndSmall && `$${parseFloat(arr[d].rndSmall).toFixed(2)}`}</td>)}
             </tr>
             {_.get(arr, '0.sm') !== undefined && _.get(arr, '0.ga') !== undefined ? <React.Fragment><tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isSmall ? 'S & M' : 'Selling & Marketing Expense'}</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].smSmall > 0 ? `$${parseFloat(arr[d].smSmall).toFixed(2)}${unit}` : '-'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].smSmall > 0 ? `$${parseFloat(arr[d].smSmall).toFixed(2)}` : '-'}</td>)}
             </tr><tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isSmall ? 'G & A' : 'General & Administrative Expense'}</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].gaSmall > 0 ? `$${parseFloat(arr[d].gaSmall).toFixed(2)}${unit}` : '-'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].gaSmall > 0 ? `$${parseFloat(arr[d].gaSmall).toFixed(2)}` : '-'}</td>)}
             </tr></React.Fragment> :
             <tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isSmall ? 'SG & A' : 'Selling, General & Administrative Expense'}</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].sgnaSmall && `$${parseFloat(arr[d].sgnaSmall).toFixed(2)}${unit}`}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].sgnaSmall && `$${parseFloat(arr[d].sgnaSmall).toFixed(2)}`}</td>)}
             </tr>}
             {_.get(arr, '0.ie') !== undefined ? <tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interest Expense</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].ieSmall > 0 ? `$${parseFloat(arr[d].ieSmall).toFixed(2)}${unit}` : '-'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].ieSmall > 0 ? `$${parseFloat(arr[d].ieSmall).toFixed(2)}` : '-'}</td>)}
             </tr> : null}
             {_.get(arr, '0.toe') !== undefined ? <tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Operating Expense</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].toeSmall > 0 ? `$${parseFloat(arr[d].toeSmall).toFixed(2)}${unit}` : '-'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].toeSmall > 0 ? `$${parseFloat(arr[d].toeSmall).toFixed(2)}` : '-'}</td>)}
             </tr> : null}
             <tr>
               <td className='align-left bold'>Operating Income</td>
-              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].oiSmall && `$${parseFloat(arr[d].oiSmall).toFixed(2)}${unit}`}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].oiSmall && `$${parseFloat(arr[d].oiSmall).toFixed(2)}`}</td>)}
             </tr>
             <tr>
               <td className={`align-left bold theme-green-${theme}`}>Operating Margin</td>
@@ -182,7 +182,7 @@ export class IncomeTable extends React.Component {
             </tr>
             <tr>
               <td className='align-left bold'>Net Income</td>
-              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].niSmall && `$${parseFloat(arr[d].niSmall).toFixed(2)}${unit}`}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].niSmall && `$${parseFloat(arr[d].niSmall).toFixed(2)}`}</td>)}
             </tr>
             <tr>
               <td className={`align-left bold theme-green-${theme}`}>Net Profit Margin</td>
