@@ -152,10 +152,10 @@ export class IncomeTable extends React.Component {
             </tr>
             {_.get(arr, '0.sm') !== undefined && _.get(arr, '0.ga') !== undefined ? <React.Fragment><tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isSmall ? 'S & M' : 'Selling & Marketing Expense'}</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].smSmall > 0 ? `$${parseFloat(arr[d].smSmall).toFixed(2)}` : '-'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].smSmall > 0 ? `$${parseFloat(arr[d].smSmall).toFixed(2)}` : ''}</td>)}
             </tr><tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isSmall ? 'G & A' : 'General & Administrative Expense'}</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].gaSmall > 0 ? `$${parseFloat(arr[d].gaSmall).toFixed(2)}` : '-'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].gaSmall > 0 ? `$${parseFloat(arr[d].gaSmall).toFixed(2)}` : ''}</td>)}
             </tr></React.Fragment> :
             <tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isSmall ? 'SG & A' : 'Selling, General & Administrative Expense'}</td>
@@ -163,11 +163,11 @@ export class IncomeTable extends React.Component {
             </tr>}
             {_.get(arr, '0.ie') !== undefined ? <tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interest Expense</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].ieSmall > 0 ? `$${parseFloat(arr[d].ieSmall).toFixed(2)}` : '-'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].ieSmall > 0 ? `$${parseFloat(arr[d].ieSmall).toFixed(2)}` : ''}</td>)}
             </tr> : null}
             {_.get(arr, '0.toe') !== undefined ? <tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Operating Expense</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].toeSmall > 0 ? `$${parseFloat(arr[d].toeSmall).toFixed(2)}` : '-'}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].toeSmall > 0 ? `$${parseFloat(arr[d].toeSmall).toFixed(2)}` : ''}</td>)}
             </tr> : null}
             <tr>
               <td className='align-left bold'>Operating Income</td>

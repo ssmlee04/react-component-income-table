@@ -264,14 +264,14 @@ function (_React$Component) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov")
-        }, arr[d] && arr[d].smSmall > 0 ? "$".concat(parseFloat(arr[d].smSmall).toFixed(2)) : '-');
+        }, arr[d] && arr[d].smSmall > 0 ? "$".concat(parseFloat(arr[d].smSmall).toFixed(2)) : '');
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "align-left"
       }, "\xA0\xA0\xA0\xA0\xA0\xA0", isSmall ? 'G & A' : 'General & Administrative Expense'), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov")
-        }, arr[d] && arr[d].gaSmall > 0 ? "$".concat(parseFloat(arr[d].gaSmall).toFixed(2)) : '-');
+        }, arr[d] && arr[d].gaSmall > 0 ? "$".concat(parseFloat(arr[d].gaSmall).toFixed(2)) : '');
       }))) : _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "align-left"
       }, "\xA0\xA0\xA0\xA0\xA0\xA0", isSmall ? 'SG & A' : 'Selling, General & Administrative Expense'), _lodash["default"].range(count).map(function (d) {
@@ -285,14 +285,14 @@ function (_React$Component) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov")
-        }, arr[d] && arr[d].ieSmall > 0 ? "$".concat(parseFloat(arr[d].ieSmall).toFixed(2)) : '-');
+        }, arr[d] && arr[d].ieSmall > 0 ? "$".concat(parseFloat(arr[d].ieSmall).toFixed(2)) : '');
       })) : null, _lodash["default"].get(arr, '0.toe') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "align-left"
       }, "\xA0\xA0\xA0\xA0\xA0\xA0Operating Expense"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov")
-        }, arr[d] && arr[d].toeSmall > 0 ? "$".concat(parseFloat(arr[d].toeSmall).toFixed(2)) : '-');
+        }, arr[d] && arr[d].toeSmall > 0 ? "$".concat(parseFloat(arr[d].toeSmall).toFixed(2)) : '');
       })) : null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "align-left bold"
       }, "Operating Income"), _lodash["default"].range(count).map(function (d) {
