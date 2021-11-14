@@ -162,7 +162,8 @@ function (_React$Component) {
           d.gaSmall = d.ga / divider;
           d.smSmall = d.sm / divider;
           d.revSmall = d.rev / divider;
-          d.revenueGrowthYoy = data[i - 4] ? ((d.rev / data[i - 4].rev - 1) * 100).toFixed(2) : '';
+          d.revenueGrowthYoY = data[i - 4] ? ((d.rev / data[i - 4].rev - 1) * 100).toFixed(2) : '';
+          d.revenueGrowthQoQ = data[i - 1] ? ((d.rev / data[i - 1].rev - 1) * 100).toFixed(2) : '';
           d.quarterStr = yy + qtr;
           d.gpMargin = parseFloat((d.gp / d.rev * 100).toFixed(2));
           d.oiMargin = parseFloat((d.oi / d.rev * 100).toFixed(2));
@@ -218,11 +219,18 @@ function (_React$Component) {
         }, arr[d] && arr[d].revSmall && "$".concat(parseFloat(arr[d].revSmall).toFixed(2)));
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "align-left bold theme-green-".concat(theme)
-      }, "Revenue Growth Rate (yoy)"), _lodash["default"].range(count).map(function (d) {
+      }, "\xA0\xA0\xA0\xA0\xA0\xA0Revenue Growth Rate (yoy)"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
-          className: "bg-lightgray-ul-".concat(d, " hov ").concat(greenOrRed(arr[d] && arr[d].revenueGrowthYoy, 40, -20))
-        }, arr[d] && arr[d].revenueGrowthYoy + '%');
+          className: "bg-lightgray-ul-".concat(d, " hov ").concat(greenOrRed(arr[d] && arr[d].revenueGrowthYoY, 40, -20))
+        }, arr[d] && arr[d].revenueGrowthYoY + '%');
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+        className: "align-left bold theme-green-".concat(theme)
+      }, "\xA0\xA0\xA0\xA0\xA0\xA0Revenue Growth Rate (qoq)"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("td", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " hov ").concat(greenOrRed(arr[d] && arr[d].revenueGrowthQoQ, 10, -10))
+        }, arr[d] && arr[d].revenueGrowthQoQ + '%');
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "align-left"
       }, "\xA0\xA0\xA0\xA0\xA0\xA0Cost of Revenue"), _lodash["default"].range(count).map(function (d) {

@@ -96,7 +96,8 @@ export class IncomeTable extends React.Component {
         d.gaSmall = d.ga / divider;
         d.smSmall = d.sm / divider;
         d.revSmall = d.rev / divider;
-        d.revenueGrowthYoy = data[i - 4] ? ((d.rev / data[i - 4].rev - 1) * 100).toFixed(2) : '';
+        d.revenueGrowthYoY = data[i - 4] ? ((d.rev / data[i - 4].rev - 1) * 100).toFixed(2) : '';
+        d.revenueGrowthQoQ = data[i - 1] ? ((d.rev / data[i - 1].rev - 1) * 100).toFixed(2) : '';
         d.quarterStr = yy + qtr;
         d.gpMargin = parseFloat((d.gp / d.rev * 100).toFixed(2));
         d.oiMargin = parseFloat((d.oi / d.rev * 100).toFixed(2));
@@ -128,8 +129,12 @@ export class IncomeTable extends React.Component {
               {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].revSmall && `$${parseFloat(arr[d].revSmall).toFixed(2)}`}</td>)}
             </tr>
             <tr>
-              <td className={`align-left bold theme-green-${theme}`}>Revenue Growth Rate (yoy)</td>
-              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov ${greenOrRed(arr[d] && arr[d].revenueGrowthYoy, 40, -20)}`}>{arr[d] && arr[d].revenueGrowthYoy + '%'}</td>)}
+              <td className={`align-left bold theme-green-${theme}`}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Revenue Growth Rate (yoy)</td>
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov ${greenOrRed(arr[d] && arr[d].revenueGrowthYoY, 40, -20)}`}>{arr[d] && arr[d].revenueGrowthYoY + '%'}</td>)}
+            </tr>
+            <tr>
+              <td className={`align-left bold theme-green-${theme}`}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Revenue Growth Rate (qoq)</td>
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov ${greenOrRed(arr[d] && arr[d].revenueGrowthQoQ, 10, -10)}`}>{arr[d] && arr[d].revenueGrowthQoQ + '%'}</td>)}
             </tr>
             <tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cost of Revenue</td>
