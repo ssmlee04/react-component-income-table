@@ -34,9 +34,10 @@ export class IncomeTable extends React.Component {
       );
     }
     const greenOrRed = (str, high, low) => {
-      const v = parseFloat(str);
-      if (v > high) return 'bold theme-green-' + theme;
-      if (v < low) return 'bold theme-red-' + theme;
+      return '';
+      // const v = parseFloat(str);
+      // if (v > high) return 'bold theme-green-' + theme;
+      // if (v < low) return 'bold theme-red-' + theme;
     };
 
     const calculateMargins = (data) => {
@@ -118,8 +119,8 @@ export class IncomeTable extends React.Component {
         <table className='table table-sm' style={{ marginBottom: 0, fontSize: 10 }}>
           <thead>
             <tr>
-              <th className='normal align-left pl-0'>Unit: {unit} {currency}</th>
-              {_.range(count).map(d => <th key={d} className={`normal align-right bg-lightgray-ul-${d} hov pr-0`}>{arr[d] && arr[d].quarterStr}</th>)}
+              <th className='bold align-left pl-0'>Unit: {unit} {currency}</th>
+              {_.range(count).map(d => <th key={d} className={`bold align-right bg-lightgray-ul-${d} hov pr-0`}>{arr[d] && arr[d].quarterStr}</th>)}
             </tr>
           </thead>
           <tbody>
@@ -128,7 +129,7 @@ export class IncomeTable extends React.Component {
             </tr>
             <tr>
               <td className='align-left bold'>Total Revenue</td>
-              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].revSmall && `$${parseFloat(arr[d].revSmall).toFixed(2)}`}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].revSmall && `$${parseFloat(arr[d].revSmall).toFixed(2)}`}</td>)}
             </tr>
             <tr>
               <td className={`align-left bold theme-green-${theme}`}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Revenue Growth Rate (yoy)</td>
@@ -144,7 +145,7 @@ export class IncomeTable extends React.Component {
             </tr>
             <tr>
               <td className='align-left bold'>Gross Profit</td>
-              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].gpSmall && `$${parseFloat(arr[d].gpSmall).toFixed(2)}`}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].gpSmall && `$${parseFloat(arr[d].gpSmall).toFixed(2)}`}</td>)}
             </tr>
             <tr>
               <td className={`align-left bold theme-green-${theme}`}>Gross Margin</td>
@@ -178,7 +179,7 @@ export class IncomeTable extends React.Component {
             </tr> : null}
             <tr>
               <td className='align-left bold'>Operating Income</td>
-              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].oiSmall && `$${parseFloat(arr[d].oiSmall).toFixed(2)}`}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].oiSmall && `$${parseFloat(arr[d].oiSmall).toFixed(2)}`}</td>)}
             </tr>
             <tr>
               <td className={`align-left bold theme-green-${theme}`}>Operating Margin</td>
@@ -189,7 +190,7 @@ export class IncomeTable extends React.Component {
             </tr>
             <tr>
               <td className='align-left bold'>Net Income</td>
-              {_.range(count).map(d => <td key={d} className={`bold bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].niSmall && `$${parseFloat(arr[d].niSmall).toFixed(2)}`}</td>)}
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].niSmall && `$${parseFloat(arr[d].niSmall).toFixed(2)}`}</td>)}
             </tr>
             <tr>
               <td className={`align-left bold theme-green-${theme}`}>Net Profit Margin</td>
