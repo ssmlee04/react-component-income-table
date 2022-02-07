@@ -117,8 +117,10 @@ export class IncomeTable extends React.Component {
         <div className={`theme-darkred-${theme} mb-2`} style={{ fontWeight: 'bold' }}>{profile.ticker} - {profile.name}&nbsp;<span className={`theme-green-${theme}`}>Income Statement</span></div>
         <table className='table table-sm' style={{ marginBottom: 0, fontSize: 10 }}>
           <thead>
-            <th className='normal align-left pl-0'>Unit: {unit} {currency}</th>
-            {_.range(count).map(d => <th key={d} className={`normal align-right bg-lightgray-ul-${d} hov pr-0`}>{arr[d] && arr[d].quarterStr}</th>)}
+            <tr>
+              <th className='normal align-left pl-0'>Unit: {unit} {currency}</th>
+              {_.range(count).map(d => <th key={d} className={`normal align-right bg-lightgray-ul-${d} hov pr-0`}>{arr[d] && arr[d].quarterStr}</th>)}
+            </tr>
           </thead>
           <tbody>
             <tr>

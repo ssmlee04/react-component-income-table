@@ -196,14 +196,14 @@ function (_React$Component) {
           marginBottom: 0,
           fontSize: 10
         }
-      }, _react["default"].createElement("thead", null, _react["default"].createElement("th", {
+      }, _react["default"].createElement("thead", null, _react["default"].createElement("tr", null, _react["default"].createElement("th", {
         className: "normal align-left pl-0"
       }, "Unit: ", unit, " ", currency), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("th", {
           key: d,
           className: "normal align-right bg-lightgray-ul-".concat(d, " hov pr-0")
         }, arr[d] && arr[d].quarterStr);
-      })), _react["default"].createElement("tbody", null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      }))), _react["default"].createElement("tbody", null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "align-left bold",
         colSpan: count + 1,
         style: {
