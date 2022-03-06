@@ -19,25 +19,8 @@ export class IncomeTable extends React.Component {
         <div style={{ fontSize: 12 }}>Not available at this time... </div>
       );
     }
-    if (profile[imgProp] && profile[imgProp].url) {
-      const btnClass = copied ? 'react-components-show-url btn btn-sm btn-danger disabled font-12' : 'react-components-show-url btn btn-sm btn-warning font-12';
-      const btnText = copied ? 'Copied' : 'Copy Img';
-      return (
-        <div className='react-components-show-button'>
-          <img alt={`${profile.ticker} - ${profile.name} income statement table condensed`} src={profile[imgProp].url} style={{ width: '100%' }} />
-          <CopyToClipboard text={profile[imgProp].url || ''}
-            onCopy={() => this.setState({ copied: true })}
-          >
-            <button className={btnClass} value={btnText}>{btnText}</button>
-          </CopyToClipboard>
-        </div>
-      );
-    }
     const greenOrRed = (str, high, low) => {
       return '';
-      // const v = parseFloat(str);
-      // if (v > high) return 'bold theme-green-' + theme;
-      // if (v < low) return 'bold theme-red-' + theme;
     };
 
     const calculateMargins = (data) => {
@@ -99,6 +82,10 @@ export class IncomeTable extends React.Component {
         d.revSmall = d.rev / divider;
         d.revenueGrowthYoY = data[i - 4] ? ((d.rev / data[i - 4].rev - 1) * 100).toFixed(2) : '';
         d.revenueGrowthQoQ = data[i - 1] ? ((d.rev / data[i - 1].rev - 1) * 100).toFixed(2) : '';
+        d.rndGrowthQoQ = d.rnd && data[i - 1] ? ((d.rnd / data[i - 1].rnd - 1) * 100).toFixed(2) : '';
+        d.sgnaGrowthQoQ = d.sgna && data[i - 1] ? ((d.sgna / data[i - 1].sgna - 1) * 100).toFixed(2) : '';
+        d.gaGrowthQoQ = d.ga && data[i - 1] ? ((d.ga / data[i - 1].ga - 1) * 100).toFixed(2) : '';
+        d.smGrowthQoQ = d.sm && data[i - 1] ? ((d.sm / data[i - 1].sm - 1) * 100).toFixed(2) : '';
         d.quarterStr = yy + qtr;
         d.gpMargin = parseFloat((d.gp / d.rev * 100).toFixed(2));
         d.oiMargin = parseFloat((d.oi / d.rev * 100).toFixed(2));
@@ -136,7 +123,7 @@ export class IncomeTable extends React.Component {
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov ${greenOrRed(arr[d] && arr[d].revenueGrowthYoY, 40, -20)}`}>{arr[d] && arr[d].revenueGrowthYoY + '%'}</td>)}
             </tr>
             <tr>
-              <td className={`align-left bold theme-green-${theme}`}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Revenue Growth Rate (qoq)</td>
+              <td className={`align-left bold theme-lightblue-${theme}`}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Revenue Growth Rate (qoq)</td>
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov ${greenOrRed(arr[d] && arr[d].revenueGrowthQoQ, 10, -10)}`}>{arr[d] && arr[d].revenueGrowthQoQ + '%'}</td>)}
             </tr>
             <tr>
@@ -158,17 +145,31 @@ export class IncomeTable extends React.Component {
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isSmall ? 'R & D' : 'Research and Development'}</td>
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].rndSmall && `$${parseFloat(arr[d].rndSmall).toFixed(2)}`}</td>)}
             </tr>
+            <tr>
+              <td className={`align-left bold theme-lightblue-${theme}`}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&D Growth Rate (qoq)</td>
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].rndGrowthQoQ && `${arr[d].rndGrowthQoQ} %`}</td>)}
+            </tr>
             {_.get(arr, '0.sm') !== undefined && _.get(arr, '0.ga') !== undefined ? <React.Fragment><tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isSmall ? 'S & M' : 'Selling & Marketing Expense'}</td>
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].smSmall > 0 ? `$${parseFloat(arr[d].smSmall).toFixed(2)}` : ''}</td>)}
             </tr><tr>
+              <td className={`align-left bold theme-lightblue-${theme}`}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S&M Growth Rate (qoq)</td>
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].smGrowthQoQ && `${arr[d].smGrowthQoQ} %`}</td>)}
+            </tr><tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isSmall ? 'G & A' : 'General & Administrative Expense'}</td>
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].gaSmall > 0 ? `$${parseFloat(arr[d].gaSmall).toFixed(2)}` : ''}</td>)}
+            </tr><tr>
+              <td className={`align-left bold theme-lightblue-${theme}`}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G&A Growth Rate (qoq)</td>
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].gaGrowthQoQ && `${arr[d].gaGrowthQoQ} %`}</td>)}
             </tr></React.Fragment> :
-            <tr>
+            <React.Fragment><tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{isSmall ? 'SG & A' : 'Selling, General & Administrative Expense'}</td>
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].sgnaSmall && `$${parseFloat(arr[d].sgnaSmall).toFixed(2)}`}</td>)}
-            </tr>}
+            </tr>
+            <tr>
+              <td className={`align-left bold theme-lightblue-${theme}`}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SG & A Growth Rate (qoq)</td>
+              {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].sgnaGrowthQoQ && `${arr[d].sgnaGrowthQoQ} %`}</td>)}
+            </tr></React.Fragment>}
             {_.get(arr, '0.ie') !== undefined ? <tr>
               <td className='align-left'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interest Expense</td>
               {_.range(count).map(d => <td key={d} className={`bg-lightgray-ul-${d} hov`}>{arr[d] && arr[d].ieSmall > 0 ? `$${parseFloat(arr[d].ieSmall).toFixed(2)}` : ''}</td>)}

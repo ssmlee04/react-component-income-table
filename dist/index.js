@@ -49,8 +49,6 @@ function (_React$Component) {
   _createClass(IncomeTable, [{
     key: "render",
     value: function render() {
-      var _this2 = this;
-
       var _this$props = this.props,
           profile = _this$props.profile,
           _this$props$prop = _this$props.prop,
@@ -72,34 +70,8 @@ function (_React$Component) {
         }, "Not available at this time... ");
       }
 
-      if (profile[imgProp] && profile[imgProp].url) {
-        var btnClass = copied ? 'react-components-show-url btn btn-sm btn-danger disabled font-12' : 'react-components-show-url btn btn-sm btn-warning font-12';
-        var btnText = copied ? 'Copied' : 'Copy Img';
-        return _react["default"].createElement("div", {
-          className: "react-components-show-button"
-        }, _react["default"].createElement("img", {
-          alt: "".concat(profile.ticker, " - ").concat(profile.name, " income statement table condensed"),
-          src: profile[imgProp].url,
-          style: {
-            width: '100%'
-          }
-        }), _react["default"].createElement(_reactCopyToClipboard.CopyToClipboard, {
-          text: profile[imgProp].url || '',
-          onCopy: function onCopy() {
-            return _this2.setState({
-              copied: true
-            });
-          }
-        }, _react["default"].createElement("button", {
-          className: btnClass,
-          value: btnText
-        }, btnText)));
-      }
-
       var greenOrRed = function greenOrRed(str, high, low) {
-        return ''; // const v = parseFloat(str);
-        // if (v > high) return 'bold theme-green-' + theme;
-        // if (v < low) return 'bold theme-red-' + theme;
+        return '';
       };
 
       var calculateMargins = function calculateMargins(data) {
@@ -164,6 +136,10 @@ function (_React$Component) {
           d.revSmall = d.rev / divider;
           d.revenueGrowthYoY = data[i - 4] ? ((d.rev / data[i - 4].rev - 1) * 100).toFixed(2) : '';
           d.revenueGrowthQoQ = data[i - 1] ? ((d.rev / data[i - 1].rev - 1) * 100).toFixed(2) : '';
+          d.rndGrowthQoQ = d.rnd && data[i - 1] ? ((d.rnd / data[i - 1].rnd - 1) * 100).toFixed(2) : '';
+          d.sgnaGrowthQoQ = d.sgna && data[i - 1] ? ((d.sgna / data[i - 1].sgna - 1) * 100).toFixed(2) : '';
+          d.gaGrowthQoQ = d.ga && data[i - 1] ? ((d.ga / data[i - 1].ga - 1) * 100).toFixed(2) : '';
+          d.smGrowthQoQ = d.sm && data[i - 1] ? ((d.sm / data[i - 1].sm - 1) * 100).toFixed(2) : '';
           d.quarterStr = yy + qtr;
           d.gpMargin = parseFloat((d.gp / d.rev * 100).toFixed(2));
           d.oiMargin = parseFloat((d.oi / d.rev * 100).toFixed(2));
@@ -225,7 +201,7 @@ function (_React$Component) {
           className: "bg-lightgray-ul-".concat(d, " hov ").concat(greenOrRed(arr[d] && arr[d].revenueGrowthYoY, 40, -20))
         }, arr[d] && arr[d].revenueGrowthYoY + '%');
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
-        className: "align-left bold theme-green-".concat(theme)
+        className: "align-left bold theme-lightblue-".concat(theme)
       }, "\xA0\xA0\xA0\xA0\xA0\xA0Revenue Growth Rate (qoq)"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
@@ -266,6 +242,13 @@ function (_React$Component) {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].rndSmall && "$".concat(parseFloat(arr[d].rndSmall).toFixed(2)));
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+        className: "align-left bold theme-lightblue-".concat(theme)
+      }, "\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0R&D Growth Rate (qoq)"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("td", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " hov")
+        }, arr[d] && arr[d].rndGrowthQoQ && "".concat(arr[d].rndGrowthQoQ, " %"));
       })), _lodash["default"].get(arr, '0.sm') !== undefined && _lodash["default"].get(arr, '0.ga') !== undefined ? _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "align-left"
       }, "\xA0\xA0\xA0\xA0\xA0\xA0", isSmall ? 'S & M' : 'Selling & Marketing Expense'), _lodash["default"].range(count).map(function (d) {
@@ -274,20 +257,41 @@ function (_React$Component) {
           className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].smSmall > 0 ? "$".concat(parseFloat(arr[d].smSmall).toFixed(2)) : '');
       })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+        className: "align-left bold theme-lightblue-".concat(theme)
+      }, "\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0S&M Growth Rate (qoq)"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("td", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " hov")
+        }, arr[d] && arr[d].smGrowthQoQ && "".concat(arr[d].smGrowthQoQ, " %"));
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "align-left"
       }, "\xA0\xA0\xA0\xA0\xA0\xA0", isSmall ? 'G & A' : 'General & Administrative Expense'), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].gaSmall > 0 ? "$".concat(parseFloat(arr[d].gaSmall).toFixed(2)) : '');
-      }))) : _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+        className: "align-left bold theme-lightblue-".concat(theme)
+      }, "\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0G&A Growth Rate (qoq)"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("td", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " hov")
+        }, arr[d] && arr[d].gaGrowthQoQ && "".concat(arr[d].gaGrowthQoQ, " %"));
+      }))) : _react["default"].createElement(_react["default"].Fragment, null, _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "align-left"
       }, "\xA0\xA0\xA0\xA0\xA0\xA0", isSmall ? 'SG & A' : 'Selling, General & Administrative Expense'), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
           key: d,
           className: "bg-lightgray-ul-".concat(d, " hov")
         }, arr[d] && arr[d].sgnaSmall && "$".concat(parseFloat(arr[d].sgnaSmall).toFixed(2)));
-      })), _lodash["default"].get(arr, '0.ie') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+      })), _react["default"].createElement("tr", null, _react["default"].createElement("td", {
+        className: "align-left bold theme-lightblue-".concat(theme)
+      }, "\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0\xA0SG & A Growth Rate (qoq)"), _lodash["default"].range(count).map(function (d) {
+        return _react["default"].createElement("td", {
+          key: d,
+          className: "bg-lightgray-ul-".concat(d, " hov")
+        }, arr[d] && arr[d].sgnaGrowthQoQ && "".concat(arr[d].sgnaGrowthQoQ, " %"));
+      }))), _lodash["default"].get(arr, '0.ie') !== undefined ? _react["default"].createElement("tr", null, _react["default"].createElement("td", {
         className: "align-left"
       }, "\xA0\xA0\xA0\xA0\xA0\xA0Interest Expense"), _lodash["default"].range(count).map(function (d) {
         return _react["default"].createElement("td", {
