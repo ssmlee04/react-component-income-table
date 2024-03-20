@@ -199,7 +199,7 @@ export class IncomeTable extends React.Component {
             </tr>
           </tbody>
         </table>
-        <div style={{ fontSize: 12, padding: 5, paddingTop: 5 }}>Crafted by <a href='https://twitter.com/tradeideashq' target='_blank' className={`theme-darkred-${theme}`}>@tradeideashq</a> with <span style={{ fontSize: 16, color: 'red' }}>💡</span></div>
+        <div style={{ fontSize: 12, padding: 5, paddingTop: 5 }}>Crafted by <a href='https://twitter.com/7baggers' target='_blank' className={`theme-darkred-${theme}`}>@7baggers</a> with <span style={{ fontSize: 16, color: 'red' }}>❤️</span></div>
       </div>
     );
   }
